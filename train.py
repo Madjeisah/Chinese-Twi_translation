@@ -52,12 +52,13 @@ y_hat, eval_summaries = m.eval(xs, ys)
 logging.info("# Session")
 saver = tf.train.Saver(max_to_keep=hp.num_epochs)
 config = tf.ConfigProto(log_device_placement=True, allow_soft_placement=True)
+
 # Allow memory growth - option 1
-#config.gpu_options.allow_growth=True
+config.gpu_options.allow_growth=True
 
 # Memory fration - option 2
-config.gpu_options.allocator_type = 'BFC'
-config.gpu_options.per_process_gpu_memory_fraction = 0.90
+#config.gpu_options.allocator_type = 'BFC'
+#config.gpu_options.per_process_gpu_memory_fraction = 0.90
 
 #with tf.Session(config = config) as s:
 with tf.Session(config = config) as sess:
